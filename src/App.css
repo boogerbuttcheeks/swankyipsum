@@ -1,0 +1,24 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+  outline: 2px solid red;
+}
+
+img {
+  max-width: 100px;
+  max-height: 100px;
+}
+
+.author-selection {
+  display: flex;
+  outline: 2px solid blue;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.active {
+  outline: 2px solid green;
+}
