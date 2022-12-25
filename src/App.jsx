@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import './App.css'
 import Text from './components/Text'
+import { supabase } from "./supabaseClient"
 
 const authors = [
   {
@@ -28,6 +29,7 @@ const authors = [
 function App() {
   const [active, setActive] = useState('shakespeare')
   const [number, setNumber] = useState(1)
+  const [text, setText] = useState('text goes here')
 
   function selectAuthor(e) {
     console.log(e)
@@ -37,6 +39,12 @@ function App() {
   function handleChange(e) {
     setNumber(e.target.value)
     console.log(number)
+  }
+
+  async function getData() {
+    const response = await supabase.from('shakespeare').select()
+    console.log(response.data)
+    setText(response.data[0].content)
   }
 
   const authorSelection = authors.map(author => {
@@ -68,8 +76,8 @@ function App() {
         onChange={handleChange}
       />
       <Text active={active} number={number} />
-      <button>Generate</button>
-
+      <button onClick={getData}>Generate</button>
+      {text}
     </div>
   )
 }
