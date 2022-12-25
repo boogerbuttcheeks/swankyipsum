@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import './App.css'
+import Text from './components/Text'
 
 const authors = [
   {
@@ -26,10 +27,16 @@ const authors = [
 
 function App() {
   const [active, setActive] = useState('shakespeare')
+  const [number, setNumber] = useState(1)
 
   function selectAuthor(e) {
     console.log(e)
     setActive(e)
+  }
+
+  function handleChange(e) {
+    setNumber(e.target.value)
+    console.log(number)
   }
 
   const authorSelection = authors.map(author => {
@@ -52,6 +59,17 @@ function App() {
       <div className='author-selection'>
         {authorSelection}
       </div>
+      <label htmlFor="number">Number of paragraphs:</label>
+      <input
+        id="number"
+        type="number"
+        name="number"
+        value={number}
+        onChange={handleChange}
+      />
+      <Text active={active} number={number} />
+      <button>Generate</button>
+
     </div>
   )
 }
