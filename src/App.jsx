@@ -42,16 +42,13 @@ function App() {
   }
 
   async function getData() {
-    const response = await supabase.from('shakespeare').select('content')
-    // console.log(response.data)
+    const response = await supabase.from(`${active}`).select('content')
 
     for (let i = 0; i < number; i++) {
-      let randomNumber = Math.floor(Math.random() * (18 - 1 + 1)) + 1;
+      let randomNumber = Math.floor(Math.random() * (14 - 1 + 1)) + 1;
       allParagraphs.push(response.data[randomNumber].content)
     }
     setText(allParagraphs)
-    console.log(text[0])
-    console.log(text)
   }
 
   const authorSelection = authors.map(author => {
