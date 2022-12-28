@@ -20,9 +20,9 @@ const authors = [
     id: 'lewis'
   },
   {
-    name: 'Mary Shelby',
-    image: '/shelby.jpg',
-    id: 'shelby'
+    name: 'Mary Shelley',
+    image: '/shelley.jpg',
+    id: 'shelley'
   }
 ]
 
