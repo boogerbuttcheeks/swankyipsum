@@ -22,3 +22,7 @@ img {
 .active {
   outline: 2px solid green;
 }
+
+.text {
+  text-align: left;
+}

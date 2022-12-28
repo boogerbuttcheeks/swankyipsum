@@ -29,7 +29,8 @@ const authors = [
 function App() {
   const [active, setActive] = useState('shakespeare')
   const [number, setNumber] = useState(1)
-  const [text, setText] = useState('text goes here')
+  const [text, setText] = useState(['Test', 'Test2'])
+  const allParagraphs = []
 
   function selectAuthor(e) {
     console.log(e)
@@ -38,13 +39,19 @@ function App() {
 
   function handleChange(e) {
     setNumber(e.target.value)
-    console.log(number)
   }
 
   async function getData() {
-    const response = await supabase.from('shakespeare').select()
-    console.log(response.data)
-    setText(response.data[0].content)
+    const response = await supabase.from('shakespeare').select('content')
+    // console.log(response.data)
+
+    for (let i = 0; i < number; i++) {
+      let randomNumber = Math.floor(Math.random() * (18 - 1 + 1)) + 1;
+      allParagraphs.push(response.data[randomNumber].content)
+    }
+    setText(allParagraphs)
+    console.log(text[0])
+    console.log(text)
   }
 
   const authorSelection = authors.map(author => {
@@ -57,6 +64,13 @@ function App() {
         onClick={(e) => { selectAuthor(e.target.id) }}
         className={active === author.id ? 'active' : ''}
       />
+    </>
+  })
+
+  const textElements = text.map((paragraph, index) => {
+    return <>
+      <p key={index}>{paragraph}</p>
+      <br />
     </>
   })
 
@@ -77,7 +91,9 @@ function App() {
       />
       <Text active={active} number={number} />
       <button onClick={getData}>Generate</button>
-      {text}
+      <div className='text'>
+        {textElements}
+      </div>
     </div>
   )
 }
