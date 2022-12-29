@@ -74,7 +74,7 @@ function App() {
   return (
     <div className="App">
       <h1 onClick={() => { console.log('test') }}>Swanky Ipsum</h1>
-      <p>Lorem ipsum for those who prefer the finer things in life.</p>
+      <p className='desc'>Lorem ipsum for those who prefer the finer things in life.</p>
       <div className='author-selection'>
         {authorSelection}
       </div>
@@ -86,8 +86,9 @@ function App() {
         value={number}
         onChange={handleChange}
       />
-      <Text active={active} number={number} />
+      {/* <Text active={active} number={number} /> */}
       <button onClick={getData}>Generate</button>
+      <hr />
       <div className='text'>
         {textElements}
       </div>

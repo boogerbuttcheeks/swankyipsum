@@ -1,5 +1,5 @@
 #root {
-  max-width: 1280px;
+  max-width: 80ch;
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
@@ -9,20 +9,57 @@
 img {
   max-width: 100px;
   max-height: 100px;
+  cursor: pointer;
+  opacity: 0.5;
+  transition: 0.1s;
+  border-radius: 4px;
+  -webkit-user-drag: none;
+  -khtml-user-drag: none;
+  -moz-user-drag: none;
+  -o-user-drag: none;
+  user-drag: none;
+}
+
+img:hover {
+  opacity: 1;
 }
 
 .author-selection {
   display: flex;
-  outline: 2px solid blue;
+  /* outline: 2px solid blue; */
   justify-content: center;
   gap: 2rem;
   flex-wrap: wrap;
+  margin-bottom: 4rem;
+  margin-top: 4rem;
 }
 
 .active {
-  outline: 2px solid green;
+  outline: 4px solid limegreen;
+  opacity: 1;
 }
 
 .text {
   text-align: left;
+}
+
+hr {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  opacity: 0.5;
+}
+
+h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.desc {
+  font-size: 1.4rem;
+}
+
+button {
+  display: block;
+  margin: 0 auto;
+  margin-top: 1rem;
 }
