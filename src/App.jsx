@@ -30,11 +30,10 @@ function App() {
   const [active, setActive] = useState('shakespeare')
   const [authorName, setAuthorName] = useState('William Shakespeare')
   const [number, setNumber] = useState(1)
-  const [text, setText] = useState(['Test', 'Test2'])
+  const [text, setText] = useState(["To be or not to be, that is the question. Whether 'tis nobler in the mind to suffer the slings and arrows of outrageous fortune, or to take arms against a sea of troubles and by opposing end them? To die, to sleep no more, and by a sleep to say we end the heartache and the thousand natural shocks that flesh is heir to? 'Tis a consummation devoutly to be wished. To die, to sleep, to sleep, perchance to dream. Ay, there's the rub, for in that sleep of death what dreams may come, when we have shuffled off this mortal coil, must give us pause. There's the respect that makes calamity of so long life."])
   const allParagraphs = []
 
   function selectAuthor(e) {
-    // console.log(e)
     setActive(e)
   }
 
@@ -44,10 +43,16 @@ function App() {
 
   async function getData() {
     const response = await supabase.from(`${active}`).select('content')
+    setText([''])
+    let numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
+    let maxNumber = 14
 
     for (let i = 0; i < number; i++) {
-      let randomNumber = Math.floor(Math.random() * (14 - 1 + 1)) + 1;
-      allParagraphs.push(response.data[randomNumber].content)
+      let randomNumber = Math.floor(Math.random() * (maxNumber - 1 + 1)) + 1;
+      let index = numbers.indexOf(randomNumber)
+      allParagraphs.push(response.data[numbers[randomNumber]].content)
+      numbers.splice(index, 1)
+      maxNumber -= 1
     }
     setText(allParagraphs)
   }
