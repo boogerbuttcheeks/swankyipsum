@@ -83,12 +83,14 @@ function App() {
         {authorSelection}
       </div>
       <p className='author'>{authorName}</p>
-      <label htmlFor="number">Number of paragraphs:</label>
+      <label htmlFor="number">Number of paragraphs: </label>
       <input
         id="number"
         type="number"
         name="number"
         value={number}
+        min='1'
+        max='10'
         onChange={handleChange}
       />
       {/* <Text active={active} number={number} /> */}
