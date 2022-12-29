@@ -31,6 +31,7 @@ function App() {
   const [authorName, setAuthorName] = useState('William Shakespeare')
   const [number, setNumber] = useState(1)
   const [text, setText] = useState(["To be or not to be, that is the question. Whether 'tis nobler in the mind to suffer the slings and arrows of outrageous fortune, or to take arms against a sea of troubles and by opposing end them? To die, to sleep no more, and by a sleep to say we end the heartache and the thousand natural shocks that flesh is heir to? 'Tis a consummation devoutly to be wished. To die, to sleep, to sleep, perchance to dream. Ay, there's the rub, for in that sleep of death what dreams may come, when we have shuffled off this mortal coil, must give us pause. There's the respect that makes calamity of so long life."])
+  const [loading, setLoading] = useState(false)
   const allParagraphs = []
 
   function selectAuthor(e) {
@@ -42,6 +43,7 @@ function App() {
   }
 
   async function getData() {
+    setLoading(true)
     const response = await supabase.from(`${active}`).select('content')
     setText([''])
     let numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
@@ -55,6 +57,7 @@ function App() {
       maxNumber -= 1
     }
     setText(allParagraphs)
+    setLoading(false)
   }
 
   const authorSelection = authors.map(author => {
@@ -84,6 +87,7 @@ function App() {
     <div className="App">
       <h1 onClick={() => { console.log('test') }}>Swanky Ipsum</h1>
       <p className='desc'>Lorem ipsum for those who prefer the finer things in life.</p>
+      <p className='me'>Made by <a href='https://www.trevortylerlee.com/'>Trevor Lee</a></p>
       <div className='author-selection'>
         {authorSelection}
       </div>
@@ -99,7 +103,7 @@ function App() {
         onChange={handleChange}
       />
       {/* <Text active={active} number={number} /> */}
-      <button onClick={getData}>Generate</button>
+      <button onClick={getData}>{loading ? 'Generating...' : 'Generate'}</button>
       <hr />
       <div className='text'>
         {textElements}
