@@ -30,7 +30,6 @@ img:hover {
   justify-content: center;
   gap: 2rem;
   flex-wrap: wrap;
-  margin-bottom: 4rem;
   margin-top: 4rem;
 }
 
@@ -62,4 +61,10 @@ button {
   display: block;
   margin: 0 auto;
   margin-top: 1rem;
+}
+
+.author {
+  margin-top: 1rem;
+  margin-bottom: 3rem;
+  font-size: 1.25rem;
 }

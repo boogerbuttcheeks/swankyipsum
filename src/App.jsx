@@ -28,12 +28,13 @@ const authors = [
 
 function App() {
   const [active, setActive] = useState('shakespeare')
+  const [authorName, setAuthorName] = useState('William Shakespeare')
   const [number, setNumber] = useState(1)
   const [text, setText] = useState(['Test', 'Test2'])
   const allParagraphs = []
 
   function selectAuthor(e) {
-    console.log(e)
+    // console.log(e)
     setActive(e)
   }
 
@@ -58,7 +59,10 @@ function App() {
         alt={author.name}
         id={author.id}
         key={author.id}
-        onClick={(e) => { selectAuthor(e.target.id) }}
+        onClick={(e) => {
+          selectAuthor(e.target.id)
+          setAuthorName(author.name)
+        }}
         className={active === author.id ? 'active' : ''}
       />
     </>
@@ -78,6 +82,7 @@ function App() {
       <div className='author-selection'>
         {authorSelection}
       </div>
+      <p className='author'>{authorName}</p>
       <label htmlFor="number">Number of paragraphs:</label>
       <input
         id="number"
