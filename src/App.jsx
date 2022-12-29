@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import './App.css'
-import Text from './components/Text'
 import { supabase } from "./supabaseClient"
 
 const authors = [
